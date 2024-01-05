@@ -1,5 +1,5 @@
 syntax = "proto3";
-package grpc;
+package user_service;
 
 import "google/protobuf/timestamp.proto";
 import "dto.proto";
@@ -20,6 +20,7 @@ message UpdateUserRequest {
 message RegistrationRequest {
   ExternalUser user = 1;
   Service service = 2;
+  string consent_info = 3;
 }
 
 message RegistrationResponse {

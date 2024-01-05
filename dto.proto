@@ -1,5 +1,5 @@
 syntax = "proto3";
-package grpc;
+package user_service;
 
 message ExternalUser {
   int64 external_id = 1;
@@ -33,5 +33,5 @@ enum ServiceType {
 
 message Service {
   string name = 1;
-  ServiceType type = 2;
+  ServiceType kind = 2;
 }
