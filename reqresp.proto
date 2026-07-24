@@ -3,11 +3,25 @@ package user_service;
 
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/struct.proto";
+import "google/protobuf/field_mask.proto";
 import "dto.proto";
 
 message GetUserRequest {
   int64 id = 1;
   bool by_external_id = 2;
+}
+
+message GetUsersRequest {
+  repeated int64 ids = 1;
+  bool by_external_id = 2;
+  google.protobuf.FieldMask fields = 3;    // optional projection, e.g. "options.language_code"
+}
+
+message GetUsersResponse {
+  // Keyed by the requested id (external when by_external_id is set, otherwise internal),
+  // so the caller can correlate results even when looking up by external id.
+  // Missing ids are simply omitted from the map.
+  map<int64, User> users = 1;
 }
 
 message UpdateUserRequest {
